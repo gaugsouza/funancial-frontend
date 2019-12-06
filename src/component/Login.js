@@ -28,10 +28,9 @@ const Login = ({setTitle, history}) => {
             logarUsuario(usuario)
             .then(({data}) =>{
                 if(data !== "" && data !== null && data !== undefined){
-                    console.log(data);
                     let usuarioLogado = {email: data.email, jwt: data.jwt, nome: data.nome}
                     localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado));
-                    history.push("/");
+                    history.push("/cadastro-sucesso");
                 }else{
                     setMensagemErro("Usuário não encontrado");
                 }
