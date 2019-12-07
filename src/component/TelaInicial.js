@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-//import ElementosDeAcesso from './ElementosDeAcesso';
-import GameUtils from './GameUtils';
+import ElementosDeAcesso from './ElementosDeAcesso';
+//import GameUtils from './GameUtils';
 import CadastroSucesso from './CadastroSucesso';
 
 
@@ -12,7 +12,7 @@ const TelaInicial = ({setTitle, isLogado}) => {
     });
     return(
         <div>
-           { isLogado ? <GameUtils /> :<CadastroSucesso/> }           
+           { isLogado ? <CadastroSucesso /> :<ElementosDeAcesso/> }           
         </div>
     )
 };
