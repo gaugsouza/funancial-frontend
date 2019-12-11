@@ -1,11 +1,11 @@
 Feature: Popup Sobre 
 
-Scenario: Exibição com sucesso
+Scenario: ExibiÃ§Ã£o com sucesso
 Given Acessei "Tela Inicial"
 When Clico no link com texto "Sobre"
-Then Elemento "sobre" fica visível
+Then Elemento "sobre" fica visÃ­vel
 
-Scenario: Exibição sem sucesso
+Scenario: ExibiÃ§Ã£o sem sucesso
 Given Acessei "Tela Inicial"
 When Clico no link com texto "Sobre"
-Then Mensagem de "erro" deve estar visível
+Then Mensagem de "erro" deve estar visÃ­vel

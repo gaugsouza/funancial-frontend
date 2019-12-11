@@ -1,27 +1,27 @@
-Feature: Popup Tela do Usu·rio
+Feature: Popup Tela do Usu√°rio
 
-Scenario: ExibiÁ„o com sucesso
+Scenario: Exibi√ß√£o com sucesso
 Given Acessei "Tela Inicial"
-When Clico no bot„o com texto "Perfil"
-Then Elemento "Perfil" fica visÌvel
+When Clico no bot√£o com texto "Perfil"
+Then Elemento "Perfil" fica vis√≠vel
 
-Scenario: ExibiÁ„o sem sucesso
+Scenario: Exibi√ß√£o sem sucesso
 Given Acessei "Tela Inicial"
-When Clico no bot„o com texto "Perfil"
-Then Mensagem de "erro" deve estar visÌvel
+When Clico no bot√£o com texto "Perfil"
+Then Mensagem de "erro" deve estar vis√≠vel
 
 Scenario: Alterar avatar
 Given Acessei "Perfil"
 When Clico no link com texto "Mudar o avatar"
-Then Mensagem de "sucesso" deve estar visÌvel
+Then Mensagem de "sucesso" deve estar vis√≠vel
 
 Scenario: Alterar nome
 Given Acessei "Perfil"
-When Digito na caixa "Nome"
+When Digito nome na caixa "Nome"
 And Clico no link com texto "Alterar"
-Then Mensagem de "sucesso" deve estar visÌvel
+Then Mensagem de "sucesso" deve estar vis√≠vel
 
 Scenario: Sair
 Given Acessei "Perfil"
-When Clico no bot„o com texto "Sair"
+When Clico no bot√£o com texto "Sair"
 Then Sou redirecionado para "Tela Inicial"
