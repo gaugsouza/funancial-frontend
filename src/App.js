@@ -9,6 +9,8 @@ import CadastroSucesso from './component/CadastroSucesso';
 import ProtectedPath from './component/ProtectedPath';
 import NotFound from './component/NotFound';
 import {checkUserLogado} from './util/checkUser';
+
+import Jogo from './component/Jogo';
 const App = ({history}) => {
   const [title, setTitle] = useState('');
   let isLogado = checkUserLogado();
@@ -35,7 +37,13 @@ const App = ({history}) => {
             <Route path="/cadastro-sucesso">
                 <CadastroSucesso />
             </Route>
-            <Route path={["/estatisticas", "/calendario","/jogo","/perfil"]}>
+            <Route path="/jogo">
+              <Jogo/>
+            </Route>
+            {/* <Route path={["/estatisticas", "/calendario","/jogo","/perfil"]}>
+               { isLogado ? <ProtectedPath /> : <Redirect to="/"/> }
+            </Route> */}
+            <Route path={["/estatisticas", "/calendario","/perfil"]}>
                { isLogado ? <ProtectedPath /> : <Redirect to="/"/> }
             </Route>
             <Route component={NotFound}/>
