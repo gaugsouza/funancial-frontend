@@ -1,35 +1,48 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import {usuario} from '../util/usuario';
-import {historias} from '../util/fases';
+import {getHistoriaByNivelAndSequencia} from '../util/fases';
 import defaultAvatar from '../images/default-avatar.png';
 import '../css/Jogo.css'
 import UserStatus from './UserStatus';
+import axios from 'axios';
 
 const Jogo = () =>{
-    const [usuarioGame, setUsuarioGame] = useState(usuario);
+    const [flagNivel, setFlag] = useState(1);
     const [nivel, setNivel] = useState(1);
-    const [fase, setFase] = useState(1);
-    let [indexFase, setIndex] = useState(0);
-    let {nome, status:{energia, amizade, dinheiro}} = usuarioGame;
+    const [sequencia, setSequencia] = useState(1);
+    const [usuarioGame, setUsuario] = useState(usuario);
+    const {nome, status: {energia, amizade, dinheiro}} = usuarioGame;
+    const [NIVEL_MAX, MAX_SITUACOES_NIVEL] = [3,6];
+    const isSequenciaExcedida = () => sequencia + 1 === MAX_SITUACOES_NIVEL + 1;
 
-    
-    
-    const filterHistoria = nivel => historias.filter(historia => historia.nivel === nivel)[0];
-    const getFase = (historia, index) => historia.fases[index];
+    let historia = getHistoriaByNivelAndSequencia(nivel, sequencia);
+    let {historia:situacao} = historia;
+    let opcoesMap = historia.opcoes.map(opcao => <div className="game-opt" key={opcao.sequencia} onClick={()=>atualizaHistoria(opcao.sequencia)}>{opcao.resposta}</div>);
 
+    const atualizaHistoria = id => {
+        updUsuario(id);
+        console.log(sequencia);
+        if(nivel === NIVEL_MAX && isSequenciaExcedida()) {
+            alert('Você venceu');
+            return;
+        }
+        if(flagNivel === MAX_SITUACOES_NIVEL ) {
+            setSequencia(1)
+            setNivel(nivel + 1);
+            setFlag(1);
+            return;
+        }
 
-    const gerarOpcoes = fase => fase.opcoes.map(opcao => <div className="game-opt" key={opcao.id} onClick={()=>alteraFase(opcao.id)}>{opcao.resposta}</div>);
-    
-    
-    let historia = filterHistoria(nivel);
-    let faseHistoria = getFase(historia, indexFase);
-    let { situacao } = faseHistoria;
-    let opcoesMap = gerarOpcoes(faseHistoria);
+        setSequencia(sequencia + 1);
+        setFlag(flagNivel + 1);
 
-    const updStatus = (id) => {
-        let {energia: energiaUpd, amizade: amizadeUpd, dinheiro: dinheiroUpd } = faseHistoria.opcoes.filter(opcao => opcao.id === id)[0];
-        setUsuarioGame({
+          
+    }
+
+    const updUsuario = id => {
+        let {energia: energiaUpd, amizade: amizadeUpd, dinheiro: dinheiroUpd } = historia.opcoes.find(opcao => opcao.sequencia === id);
+        setUsuario({
             ...usuarioGame,
             status: {
                 energia: energia + energiaUpd,
@@ -37,20 +50,7 @@ const Jogo = () =>{
                 dinheiro: dinheiro + dinheiroUpd
             }
         });
-    }
-    const alteraFase = (id) => {
-        updStatus(id);
-       
-        if(!getFase(historia,indexFase+1)){
-            if(!filterHistoria(nivel+1)){
-                alert("Você venceu!")
-                return;
-            }
-            setNivel(nivel+1);
-            setIndex(0);
-            return;
-        }
-        setIndex(indexFase +1);
+        console.log(usuarioGame);
     }
     return(
         <div className="game-container">
