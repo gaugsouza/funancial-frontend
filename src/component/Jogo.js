@@ -54,6 +54,7 @@ const Jogo = () =>{
     }
     return(
         <div className="game-container">
+            <h3> Jogo Demo </h3>
             <div className="game-area">
                 <div className="user-info">
                     <div style={{backgroundImage:`url(${defaultAvatar})`}} className="avatar-img"></div>

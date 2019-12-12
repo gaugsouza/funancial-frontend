@@ -30,7 +30,7 @@ const Login = ({setTitle, history}) => {
                 if(data !== "" && data !== null && data !== undefined){
                     let usuarioLogado = {email: data.email, jwt: data.jwt, nome: data.nome}
                     localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado));
-                    history.push("/cadastro-sucesso");
+                    history.push("/");
                 }else{
                     setMensagemErro("Usuário não encontrado");
                 }

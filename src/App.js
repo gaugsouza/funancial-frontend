@@ -37,15 +37,15 @@ const App = ({history}) => {
             <Route path="/cadastro-sucesso">
                 <CadastroSucesso />
             </Route>
-            <Route path="/jogo">
+            {/* <Route path="/jogo">
               <Jogo/>
+            </Route> */}
+            <Route path={["/estatisticas", "/calendario","/jogo","/perfil"]}>
+               { isLogado ? <ProtectedPath /> : <Redirect to="/"/> }
             </Route>
-            {/* <Route path={["/estatisticas", "/calendario","/jogo","/perfil"]}>
+            {/* <Route path={["/estatisticas", "/calendario","/perfil"]}>
                { isLogado ? <ProtectedPath /> : <Redirect to="/"/> }
             </Route> */}
-            <Route path={["/estatisticas", "/calendario","/perfil"]}>
-               { isLogado ? <ProtectedPath /> : <Redirect to="/"/> }
-            </Route>
             <Route component={NotFound}/>
           </Switch>
         </div>

@@ -6,8 +6,8 @@ const ElementosDeAcesso = () => {
         <div className="access-content">
             <Link to="/login">Login</Link>
             <Link to="/cadastro">Cadastro</Link>
-            <Link to="/perfil">Perfil</Link>
-            <Link to="/estatistica">Estatistica</Link>
+            {/* <Link to="/perfil">Perfil</Link>
+            <Link to="/estatistica">Estatistica</Link> */}
         </div>
     );  
 };

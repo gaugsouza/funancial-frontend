@@ -15,6 +15,10 @@ const urlPath = [
         pageName: "Cadastro bem sucedido",
         path: "cadastro-sucesso",
         pageTitle: "Funancial - Cadastro bem sucedido"
+    },{
+        pageName: "Jogo",
+        path: "jogo",
+        pageTitle: "Funancial - Economy for Kids"
     }
 ]
 
